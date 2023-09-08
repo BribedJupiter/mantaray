@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include "ball.h"
+#include "cubej.h"
 
 int main()
 {
@@ -9,6 +10,7 @@ int main()
     const int screenHeight = 600;
 
     Ball ball = Ball();
+    Cubej cubej = Cubej();
 
     InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
     SetTargetFPS(60);
@@ -17,6 +19,8 @@ int main()
     {
         BeginDrawing();
         ClearBackground(darkGreen);
+        cubej.Update();
+        cubej.Draw();
         ball.Update();
         ball.Draw();
         EndDrawing();
