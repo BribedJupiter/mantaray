@@ -4,8 +4,6 @@
 
 int main()
 {
-    Color darkGreen = Color{20, 160, 133, 255};
-
     const int screenWidth = 800;
     const int screenHeight = 600;
 
@@ -18,11 +16,16 @@ int main()
     while (!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(darkGreen);
+        ClearBackground(BLACK);
+        
+        DrawText("Why... hello there.", 20, 20, 20, GOLD);
+
         cubej.Update();
         cubej.Draw();
         ball.Update();
         ball.Draw();
+
+
         EndDrawing();
     }
 
