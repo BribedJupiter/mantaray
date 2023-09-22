@@ -1,6 +1,7 @@
 # Makefile Mantary
 # Only supports Windows
 # Look at old-makefile.mak to see what the more complicated makefile this is based off of is like
+# Also NOTE that the lib/*.dll files are not used at all at the moment. (libgxx_s_sw2-1.dll and libstdc++6.dll)
 
 # Define the project name
 PROJECT_NAME ?= Mantaray
