@@ -1,6 +1,11 @@
 #include <raylib.h>
-#include "ball.h"
-#include "cubej.h"
+#include "game/ball.h"
+#include "game/cubej.h"
+
+/*
+    This will be the entry point of the application as well
+    as where we will initialize it.
+*/
 
 int main()
 {
