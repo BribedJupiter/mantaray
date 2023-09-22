@@ -15,7 +15,7 @@ int main()
     Ball ball = Ball();
     Cubej cubej = Cubej();
 
-    InitWindow(screenWidth, screenHeight, "My first RAYLIB program!");
+    InitWindow(screenWidth, screenHeight, "Mantaray by Cool Co.");
     SetTargetFPS(60);
 
     while (!WindowShouldClose())
@@ -29,7 +29,6 @@ int main()
         cubej.Draw();
         ball.Update();
         ball.Draw();
-
 
         EndDrawing();
     }

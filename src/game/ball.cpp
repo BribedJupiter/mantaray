@@ -11,9 +11,15 @@ Ball::Ball()
 }
 
 void Ball::Update()
-{
+{   
     x += speedX;
     y += speedY;
+
+    if (IsMouseButtonDown(0))
+    {
+        x = GetMouseX();
+        y = GetMouseY();
+    }
 
     if (x + radius >= GetScreenWidth() || x - radius <= 0)
         speedX *= -1;
