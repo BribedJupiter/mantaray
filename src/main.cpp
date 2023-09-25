@@ -10,8 +10,8 @@
 
 int main()
 {
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+    const int screenWidth = 1280;
+    const int screenHeight = 720;
     /* 
         Define the different game modes
         ball mode when mode == 1
@@ -28,23 +28,21 @@ int main()
 
         while (!WindowShouldClose())
         {
-
             BeginDrawing();
             ClearBackground(BLACK);
-            
-            DrawText("Why... hello there.", 20, 20, 20, GOLD);
-            // Draw FPS
-            char fpsStr[] = {16}; // Create FPS array
-            sprintf(fpsStr, "FPS: %i", GetFPS()); // Get FPS value and build the string
-            DrawText(fpsStr, 700, 20, 20, RED); // Draw FPS to screen
 
             cubej.Update();
             cubej.Draw();
             ball.Update();
             ball.Draw();
-
-            EndDrawing();
             
+            DrawText("Why... hello there.", 20, 20, 20, GOLD);
+            // Draw FPS
+            char fpsStr[] = {64}; // Create FPS array
+            sprintf(fpsStr, "FPS: %i", GetFPS()); // Not memory safe, overwriting cubej buffer
+            DrawText(fpsStr, 700, 20, 20, RED); // Draw FPS to screen
+            
+            EndDrawing();            
         }
 
         CloseWindow();

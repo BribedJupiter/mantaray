@@ -7,14 +7,20 @@ Cubej::Cubej()
     y = 100;
     w = 20;
     h = 20;
-    speedX = 10;
-    speedY = 10;
+    speedX = 5;
+    speedY = 5;
 }
 
 void Cubej::Update()
 {
     x += speedX;
     y += speedY;
+
+    if (IsMouseButtonDown(1))
+    {
+        x = GetMouseX();
+        y = GetMouseY();
+    }
 
     if (x + w >= GetScreenWidth() || x <= 0)
         speedX *= -1;
