@@ -14,12 +14,12 @@ int main()
     const int screenHeight = 720;
     /* 
         Define the different game modes
-        ball mode when mode == 1
-        1st person mode when mode == 2
+        ball mode when gameMode == 1
+        1st person mode when gameMode == 2
     */
-    const int mode = 1; 
+    const int gameMode = 1; 
 
-    if (mode == 1) {
+    if (gameMode == 1) {
         Ball ball = Ball();
         Cubej cubej = Cubej();
         char fpsStr[16]; // Create FPS array

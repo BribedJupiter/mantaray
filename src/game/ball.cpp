@@ -3,17 +3,17 @@
 
 Ball::Ball()
 {
-    x = 100;
-    y = 100;
-    speedX = 5;
-    speedY = 5;
-    radius = 15;
+    x = 100.0f;
+    y = 100.0f;
+    speedX = 500.0f;
+    speedY = 500.0f;
+    radius = 15.0f;
 }
 
 void Ball::Update()
 {   
-    x += speedX;
-    y += speedY;
+    x += speedX * GetFrameTime();
+    y += speedY * GetFrameTime();
 
     if (IsMouseButtonDown(0))
     {

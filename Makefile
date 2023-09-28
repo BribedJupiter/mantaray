@@ -21,7 +21,7 @@ CFLAGS := -std=c++14 -Wall # Compiler flags
 LDFLAGS := -L. 
 LDLIBS := -lraylib -lopengl32 -lgdi32 -lwinmm # Libraries we need
 
-# Additional debug flags
+# Additional debug flags - need to compile with -g in order to allow breakpoints and other debug functionality
 ifeq ($(DEBUG), TRUE)
  DEBUG_FLAGS := -g # Compiler flags
 endif

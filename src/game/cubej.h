@@ -8,10 +8,10 @@ class Cubej
         void Draw();
 
     private:
-        int x;
-        int w;
-        int y;
-        int h;
-        int speedX;
-        int speedY;
+        float x;
+        float w;
+        float y;
+        float h;
+        float speedX;
+        float speedY;
 };
