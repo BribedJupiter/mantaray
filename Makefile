@@ -6,6 +6,9 @@
 # Define the project name
 PROJECT_NAME ?= Mantaray
 
+# Debug mode - TRUE or FALSE
+DEBUG = TRUE
+
 # Directories
 SRC_DIR := src
 OBJ_DIR := obj
@@ -13,8 +16,15 @@ OBJ_DIR := obj
 # Compiler and flags
 CC := g++ # Use the c++ compiler
 CFLAGS := -std=c++14 -Wall # Compiler flags
+
+# Library flags
 LDFLAGS := -L. 
 LDLIBS := -lraylib -lopengl32 -lgdi32 -lwinmm # Libraries we need
+
+# Additional debug flags
+ifeq ($(DEBUG), TRUE)
+ DEBUG_FLAGS := -g # Compiler flags
+endif
 
 # Source files
 # MAIN_SRC --> our main file
@@ -40,11 +50,11 @@ $(foreach dir,$(GAME_DIRS),$(eval $(call generate_rules,$(dir))))
 
 # Build target
 $(PROJECT_NAME): $(MAIN_OBJ) $(GAME_OBJS)
-	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	$(CC) -o $@ $^ $(LDFLAGS) $(LDLIBS) ${DEBUG_FLAGS}
 
 # Compile main source file
 $(MAIN_OBJ): $(MAIN_SRC)
-	$(CC) -c $< -o $@ $(CFLAGS)
+	$(CC) -c $< -o $@ $(CFLAGS) ${DEBUG_FLAGS}
 
 # Phony targets
 .PHONY: all clean

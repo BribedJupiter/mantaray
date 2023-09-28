@@ -22,6 +22,8 @@ int main()
     if (mode == 1) {
         Ball ball = Ball();
         Cubej cubej = Cubej();
+        char fpsStr[16]; // Create FPS array
+        printf("fpsStr size is %lld\n", sizeof(fpsStr));
 
         InitWindow(screenWidth, screenHeight, "Mantaray by Cool Co.");
         SetTargetFPS(60);
@@ -37,11 +39,11 @@ int main()
             ball.Draw();
             
             DrawText("Why... hello there.", 20, 20, 20, GOLD);
-            // Draw FPS
-            char fpsStr[] = {64}; // Create FPS array
-            sprintf(fpsStr, "FPS: %i", GetFPS()); // Not memory safe, overwriting cubej buffer
-            DrawText(fpsStr, 700, 20, 20, RED); // Draw FPS to screen
             
+            // Draw FPS - need to check for truncation here later
+            snprintf(fpsStr, sizeof(fpsStr), "FPS: %i", GetFPS()); // WARNING: Potential for issues here as if the fps is big enough then the buffer provided will be too small
+            DrawText(fpsStr, 700, 20, 20, RED); // Draw FPS to screen
+
             EndDrawing();            
         }
 
