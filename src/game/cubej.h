@@ -6,6 +6,7 @@ class Cubej
         Cubej();
         void Update();
         void Draw();
+        struct BoundingBox;
 
     private:
         float x;

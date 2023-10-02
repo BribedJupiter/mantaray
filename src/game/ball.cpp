@@ -10,6 +10,13 @@ Ball::Ball()
     radius = 15.0f;
 }
 
+struct BoundingBox {
+    float x_left;
+    float x_right;
+    float y_top;
+    float y_bottonm;
+};
+
 void Ball::Update()
 {   
     x += speedX * GetFrameTime();

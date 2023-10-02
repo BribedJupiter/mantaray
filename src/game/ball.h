@@ -6,6 +6,7 @@ class Ball
         Ball();
         void Update();
         void Draw();
+        struct BoundingBox;
 
     private:
         float x;
