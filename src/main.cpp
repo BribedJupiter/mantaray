@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "game/ball.h"
 #include "game/cubej.h"
+#include "game/collisionManager.h"
 
 /*
     This will be the entry point of the application as well
@@ -22,8 +23,10 @@ int main()
     if (gameMode == 1) {
         Ball ball = Ball();
         Cubej cubej = Cubej();
+        CollisionManager collisionManager = CollisionManager();
         char fpsStr[16]; // Create FPS array
         printf("fpsStr size is %lld\n", sizeof(fpsStr));
+        int collisionStatus = 0; // De initialize when implement collision
 
         InitWindow(screenWidth, screenHeight, "Mantaray by Cool Co.");
         SetTargetFPS(60);
@@ -33,9 +36,10 @@ int main()
             BeginDrawing();
             ClearBackground(BLACK);
 
-            cubej.Update();
+            //collisionStatus = collisionManager.checkCollision(ball, cubej);
+            cubej.Update(collisionStatus);
             cubej.Draw();
-            ball.Update();
+            ball.Update(collisionStatus);
             ball.Draw();
             
             DrawText("Why... hello there.", 20, 20, 20, GOLD);

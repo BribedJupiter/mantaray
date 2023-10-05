@@ -4,9 +4,15 @@ class Ball
 {
     public:
         Ball();
-        void Update();
+        void Update(int collisionStatus);
         void Draw();
-        struct BoundingBox;
+        struct BoundingBox {
+            float x_left;
+            float x_right;
+            float y_top;
+            float y_bottonm;
+        } bounds;
+        ~Ball();
 
     private:
         float x;

@@ -9,16 +9,10 @@ Cubej::Cubej()
     h = 20.0f;
     speedX = 500.0f;
     speedY = 500.0f;
+
 }
 
-struct BoundingBox {
-    float x_left;
-    float x_right;
-    float y_top;
-    float y_bottonm;
-};
-
-void Cubej::Update()
+void Cubej::Update(int collisionStatus)
 {
     x += speedX * GetFrameTime();
     y += speedY * GetFrameTime();
@@ -33,9 +27,19 @@ void Cubej::Update()
         speedX *= -1;
     if (y + h >= GetScreenHeight() || y <= 0)
         speedY *= -1;
+
+    bounds.x_left = x - w;
+    bounds.x_right = x + w;
+    bounds.y_top = y + h;
+    bounds.y_bottonm = y -h;
 }
 
 void Cubej::Draw()
 {
     DrawRectangle(x, y, w, h, RED);
 }
+
+Cubej::~Cubej() 
+{
+    // Stuff for when deconstruct
+};

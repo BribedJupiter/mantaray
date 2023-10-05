@@ -10,14 +10,7 @@ Ball::Ball()
     radius = 15.0f;
 }
 
-struct BoundingBox {
-    float x_left;
-    float x_right;
-    float y_top;
-    float y_bottonm;
-};
-
-void Ball::Update()
+void Ball::Update(int collisionStatus)
 {   
     x += speedX * GetFrameTime();
     y += speedY * GetFrameTime();
@@ -28,14 +21,24 @@ void Ball::Update()
         y = GetMouseY();
     }
 
-    if (x + radius >= GetScreenWidth() || x - radius <= 0)
+    if (x + radius >= GetScreenWidth() || x - radius <= 0 || collisionStatus == 1)
         speedX *= -1;
 
-    if (y + radius >= GetScreenHeight() || y - radius <= 0)
+    if (y + radius >= GetScreenHeight() || y - radius <= 0 || collisionStatus == 1)
         speedY *= -1;
+
+    bounds.x_left = x - radius;
+    bounds.x_right = x + radius;
+    bounds.y_top = y + radius;
+    bounds.y_bottonm = y - radius;
 }
 
 void Ball::Draw()
 {
     DrawCircle(x, y, radius, WHITE);
+}
+
+Ball::~Ball() 
+{
+    // Put stuff to delete here
 }
