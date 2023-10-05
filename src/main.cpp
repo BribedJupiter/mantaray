@@ -26,29 +26,47 @@ int main()
         CollisionManager collisionManager = CollisionManager();
         char fpsStr[16]; // Create FPS array
         printf("fpsStr size is %lld\n", sizeof(fpsStr));
-        int collisionStatus = 0; // De initialize when implement collision
+        int collisionStatus; // De initialize when implement collision
+        int pause;
+        bool oscillate;
+        oscillate = false;
+        bool canChangeOsccilate;
 
         InitWindow(screenWidth, screenHeight, "Mantaray by Cool Co.");
         SetTargetFPS(60);
 
         while (!WindowShouldClose())
         {
+            if (IsKeyUp(KEY_O)) 
+            {
+                canChangeOsccilate = true;
+            }
+            if (IsKeyDown(KEY_SPACE)) pause = 1; else pause = 0;
+            if (IsKeyDown(KEY_O) && canChangeOsccilate == true) 
+            {
+                oscillate = !oscillate;
+                printf("Oscillate is: %i\n", oscillate);
+                canChangeOsccilate = false;
+            }  
+            
             BeginDrawing();
             ClearBackground(BLACK);
 
-            //collisionStatus = collisionManager.checkCollision(ball, cubej);
-            cubej.Update(collisionStatus);
+            if (pause == 0) {
+                collisionStatus = collisionManager.checkCollision(ball, cubej);
+                cubej.Update(collisionStatus, oscillate);
+                ball.Update(collisionStatus, oscillate);
+            }
             cubej.Draw();
-            ball.Update(collisionStatus);
             ball.Draw();
             
-            DrawText("Why... hello there.", 20, 20, 20, GOLD);
+            DrawText("Why... hello there.\nPress o to toggle oscillation\nPress down to shrink\nPress space to pause\nLeft click to summom ball\nRight click to summon square", 20, 20, 15, GOLD);
             
             // Draw FPS - need to check for truncation here later
             snprintf(fpsStr, sizeof(fpsStr), "FPS: %i", GetFPS()); // WARNING: Potential for issues here as if the fps is big enough then the buffer provided will be too small
-            DrawText(fpsStr, 700, 20, 20, RED); // Draw FPS to screen
+            DrawText(fpsStr, 1100, 20, 20, RED); // Draw FPS to screen
 
-            EndDrawing();            
+            EndDrawing();         
         }
 
         CloseWindow();

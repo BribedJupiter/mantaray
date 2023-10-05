@@ -4,13 +4,13 @@ class Ball
 {
     public:
         Ball();
-        void Update(int collisionStatus);
+        void Update(int collisionStatus, int oscillate);
         void Draw();
         struct BoundingBox {
-            float x_left;
             float x_right;
+            float x_left;
             float y_top;
-            float y_bottonm;
+            float y_bottom;
         } bounds;
         ~Ball();
 

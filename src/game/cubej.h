@@ -4,7 +4,7 @@ class Cubej
 {
     public:
         Cubej();
-        void Update(int collisionStatus);
+        void Update(int collisionStatus, int oscillate);
         void Draw();
         struct BoundingBox {
             float x_left;

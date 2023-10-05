@@ -1,5 +1,6 @@
 #include "ball.h"
 #include <raylib.h>
+#include <math.h>
 
 Ball::Ball()
 {
@@ -10,15 +11,24 @@ Ball::Ball()
     radius = 15.0f;
 }
 
-void Ball::Update(int collisionStatus)
+void Ball::Update(int collisionStatus, int oscillate)
 {   
     x += speedX * GetFrameTime();
-    y += speedY * GetFrameTime();
+    y += speedY * GetFrameTime();\
 
     if (IsMouseButtonDown(0))
     {
         x = GetMouseX();
         y = GetMouseY();
+    }
+
+    if (IsKeyDown(KEY_DOWN))
+    {
+        radius -= 1;
+    } else if (oscillate == true)
+    {
+        radius += rand() % 15 - 5;
+        if (radius <= 0) radius = 1;
     }
 
     if (x + radius >= GetScreenWidth() || x - radius <= 0 || collisionStatus == 1)
@@ -30,7 +40,7 @@ void Ball::Update(int collisionStatus)
     bounds.x_left = x - radius;
     bounds.x_right = x + radius;
     bounds.y_top = y + radius;
-    bounds.y_bottonm = y - radius;
+    bounds.y_bottom = y - radius;
 }
 
 void Ball::Draw()

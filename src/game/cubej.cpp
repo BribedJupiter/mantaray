@@ -1,5 +1,6 @@
 #include "cubej.h"
 #include <raylib.h>
+#include <math.h>
 
 Cubej::Cubej()
 {
@@ -12,10 +13,23 @@ Cubej::Cubej()
 
 }
 
-void Cubej::Update(int collisionStatus)
+void Cubej::Update(int collisionStatus, int oscillate)
 {
     x += speedX * GetFrameTime();
     y += speedY * GetFrameTime();
+
+    if (IsKeyDown(KEY_DOWN)) 
+    {
+        w -= 1;
+        h -= 1;
+    } else if (oscillate == true) 
+    {
+        w += rand() % 15 - 5;
+        h += rand() % 15 - 5;
+
+        if (w <= 0) w = 1;
+        if (h <= 0) h = 1;
+    }
 
     if (IsMouseButtonDown(1))
     {
